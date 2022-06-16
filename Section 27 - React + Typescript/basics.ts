@@ -81,3 +81,28 @@ function printOutput(value: any) {
   // the inferred type is void since it doesn't return anything
   console.log(value);
 }
+
+// *** Generics
+
+// TS Generics help the function be type safe and be flexible
+
+// TS looks at the type of the inputs and the function and infers return type
+function insertAtBeginning<T>(array: T[], value: T) {
+  const newArray = [value, ...array];
+  return newArray;
+}
+
+const demoArray = [1, 2, 3];
+
+// this cause it would be an array of numbers and a number
+const updatedArray = insertAtBeginning(demoArray, -1); // [-1 ,1 , 2, 3]
+
+// this cause it would be an array of strings and a string because of the generics
+const stringArray = insertAtBeginning(["a", "b", "c"], "d");
+
+let numbersExample1: number[] = [1, 2, 3];
+// is syntactical sugar for
+let numbersExample2: Array<number> = [1, 2, 3];
+
+// set a concrete type to define the generic type
+const stringArray2 = insertAtBeginning<string>(["a", "b", "c"], "d");
