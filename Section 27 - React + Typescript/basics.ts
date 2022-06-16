@@ -2,7 +2,7 @@
 // More complex types: arrays, objects
 // Function types, parameters
 
-// Primitives
+// *** Primitives
 // we use the primitive type (lowercase - ex: number, string)
 let age: number = 24;
 
@@ -12,9 +12,9 @@ let userName: string;
 
 let isInsctructor: boolean;
 
-// More complex types
+// *** More complex types
 
-// array of strings
+// *** array of strings
 let hobbies: string[];
 hobbies = ["a", "b"];
 
@@ -42,3 +42,42 @@ let people: {
   name: string;
   age: number;
 }[];
+
+// *** Type infernence
+// ts tries to infer the type even though the dev didn't explicitly declare the type
+let course = "string";
+
+// this would show an error in the code editor
+// course = 12
+
+// *** Union Types
+let union: string | number | boolean[] = "test";
+union = 3;
+union = [true, false];
+
+// *** Type Aliases
+
+type PersonAlias = {
+  name: string;
+  age: number;
+};
+
+let bob: PersonAlias;
+
+let bobs: PersonAlias[];
+
+// *** Functions & Types
+
+function add(a: number, b: number) {
+  return a + b; // TS infers that the return type is a number
+}
+
+function subtract(a: number, b: number): number {
+  // we can also determine the return type
+  return a - b;
+}
+
+function printOutput(value: any) {
+  // the inferred type is void since it doesn't return anything
+  console.log(value);
+}
