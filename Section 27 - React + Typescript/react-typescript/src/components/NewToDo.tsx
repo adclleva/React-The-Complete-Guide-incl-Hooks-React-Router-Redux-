@@ -1,19 +1,21 @@
 import React, { useRef } from "react";
 
-const NewToDo = () => {
+const NewToDo: React.FC<{ onAddTodo: (todoText: string) => void }> = (props) => {
   // needs to explicitly define the ref
   const todoTextInputRef = useRef<HTMLInputElement>(null);
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
-    const enteredText = todoTextInputRef.current?.value;
-    // const enteredText = todoTextInputRef.current!.value; <- the ! tells TS that we are sure that it won't be null
+    //  the ! tells TS that we are sure that it won't be null
+    const enteredText = todoTextInputRef.current!.value;
 
     if (enteredText?.trim().length === 0) {
       // throw an error
       return;
     }
+
+    props.onAddTodo(enteredText);
   };
 
   return (
@@ -24,3 +26,5 @@ const NewToDo = () => {
     </form>
   );
 };
+
+export default NewToDo;
