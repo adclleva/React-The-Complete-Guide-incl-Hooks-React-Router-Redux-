@@ -2,6 +2,7 @@ import React from "react";
 
 import Todo from "../models/todo";
 import TodoItem from "./TodoItem";
+import classes from "./Todos.module.css";
 
 type Props = {
   items?: Todo[];
@@ -12,7 +13,7 @@ type Props = {
 // React.FC is a generic type and we are using this React.FC feature to set the prop types with <{}>
 const Todos = (props: Props) => {
   return (
-    <ul>
+    <ul className={classes.todos}>
       {props.items?.map((item) => {
         const { id, text } = item;
         return <TodoItem key={id} text={text} />;
