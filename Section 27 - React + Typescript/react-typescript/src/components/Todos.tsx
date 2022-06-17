@@ -1,6 +1,7 @@
 import React from "react";
 
 import Todo from "../models/todo";
+import TodoItem from "./TodoItem";
 
 type Props = {
   items?: Todo[];
@@ -14,7 +15,7 @@ const Todos = (props: Props) => {
     <ul>
       {props.items?.map((item) => {
         const { id, text } = item;
-        return <li key={id}>{text}</li>;
+        return <TodoItem key={id} text={text} />;
       })}
     </ul>
   );
