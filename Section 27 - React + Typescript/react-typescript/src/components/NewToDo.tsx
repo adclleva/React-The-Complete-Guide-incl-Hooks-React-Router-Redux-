@@ -1,8 +1,14 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
+
+import { TodosContext } from "../store/todos-context";
 
 import classes from "./NewTodo.module.css";
 
-const NewToDo: React.FC<{ onAddTodo: (todoText: string) => void }> = (props) => {
+// const NewTodo: React.FC<{ onAddTodo: (todoText: string) => void }> = (props) => {
+
+const NewTodo: React.FC = () => {
+  const todosContext = useContext(TodosContext);
+
   // needs to explicitly define the ref
   const todoTextInputRef = useRef<HTMLInputElement>(null);
 
@@ -17,7 +23,7 @@ const NewToDo: React.FC<{ onAddTodo: (todoText: string) => void }> = (props) => 
       return;
     }
 
-    props.onAddTodo(enteredText);
+    todosContext.addTodo(enteredText);
   };
 
   return (
@@ -29,4 +35,4 @@ const NewToDo: React.FC<{ onAddTodo: (todoText: string) => void }> = (props) => 
   );
 };
 
-export default NewToDo;
+export default NewTodo;
