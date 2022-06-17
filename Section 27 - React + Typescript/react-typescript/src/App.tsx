@@ -4,9 +4,14 @@ import Todos from "./components/Todos";
 import Todo from "./models/todo";
 
 function App() {
-  const todos = [new Todo("Learn React"), new Todo("Learn TypeScript")];
+  // to set what kind of data the todos would be
+  const [todos, setTodos] = useState<Todo[]>([]);
 
-  const addTodohandler = (todoText: string) => {};
+  const addTodohandler = (todoText: string) => {
+    const newTodo = new Todo(todoText);
+
+    setTodos((prevTodos) => prevTodos.concat(newTodo));
+  };
 
   return (
     <div>
