@@ -7,6 +7,7 @@ import classes from "./Todos.module.css";
 type Props = {
   items?: Todo[];
   children?: React.ReactNode;
+  onRemoveTodo: (todoId: string) => void;
 };
 
 // this type notation indicates that this function is a functional component type
@@ -16,7 +17,10 @@ const Todos = (props: Props) => {
     <ul className={classes.todos}>
       {props.items?.map((item) => {
         const { id, text } = item;
-        return <TodoItem key={id} text={text} />;
+
+        // keep in mind that this will create a re-render
+        //this is equivalent => onRemoveTodo={() => props.onRemoveTodo(item.id)}
+        return <TodoItem key={id} text={text} onRemoveTodo={props.onRemoveTodo.bind(null, item.id)} />;
       })}
     </ul>
   );
